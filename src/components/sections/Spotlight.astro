@@ -1,34 +1,36 @@
 ---
-import Button from '../ui/Button';
+import Button from "../ui/Button";
 
 const spotlightItems = [
   {
-    title: 'Play. Refer. Earn. Repeat.',
-    description: 'Invite friends and earn rewards for every successful referral.',
-    image: '/images/spotlight/referral.jpg',
-    buttonText: 'Refer Now',
-    buttonLink: '/refer',
+    title: "Play. Refer. Earn. Repeat.",
+    description:
+      "Invite friends and earn rewards for every successful referral.",
+    image: "/images/spotlight/referral.jpg",
+    buttonText: "Refer Now",
+    buttonLink: "/refer",
   },
   {
-    title: 'Find Your Coach. Crush Your Goals.',
-    description: 'Connect with professional coaches to take your game to the next level.',
-    image: '/images/spotlight/coaching.jpg',
-    buttonText: 'Train Smarter',
-    buttonLink: '/train',
+    title: "Find Your Coach. Crush Your Goals.",
+    description:
+      "Connect with professional coaches to take your game to the next level.",
+    image: "/images/spotlight/coaching.jpg",
+    buttonText: "Train Smarter",
+    buttonLink: "/train",
   },
   {
-    title: 'Got a Turf? Turn It Into a Hotspot!',
-    description: 'List your venue and reach thousands of sports enthusiasts.',
-    image: '/images/spotlight/venue.jpg',
-    buttonText: 'List Your Venue',
-    buttonLink: '/venues/list',
+    title: "Got a Turf? Turn It Into a Hotspot!",
+    description: "List your venue and reach thousands of sports enthusiasts.",
+    image: "/images/spotlight/venue.jpg",
+    buttonText: "List Your Venue",
+    buttonLink: "/venues/list",
   },
   {
-    title: 'Got Ideas? We\'re All Ears!',
-    description: 'Share your feedback and help us improve the platform.',
-    image: '/images/spotlight/feedback.jpg',
-    buttonText: 'Tell Us What You Think',
-    buttonLink: '/feedback',
+    title: "Got Ideas? We're All Ears!",
+    description: "Share your feedback and help us improve the platform.",
+    image: "/images/spotlight/feedback.jpg",
+    buttonText: "Tell Us What You Think",
+    buttonLink: "/feedback",
   },
 ];
 ---
@@ -37,31 +39,36 @@ const spotlightItems = [
   <div class="container mx-auto px-6">
     <div class="flex gap-6 md:gap-8">
       <div class="shrink-0 hidden md:block">
-        <div class="bg-accent text-text px-4 py-3 rounded-lg transform -rotate-90 origin-center whitespace-nowrap font-bold text-sm h-fit">
+        <div
+          class="bg-accent text-text px-4 py-3 rounded-lg transform -rotate-90 origin-center whitespace-nowrap font-bold text-sm h-fit"
+        >
           SPOTLIGHT
         </div>
       </div>
       <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-5">
-        {spotlightItems.map((item) => (
-          <div class="bg-primary text-white p-6 rounded-2xl shadow-lg">
-            <div class="flex items-start justify-between mb-5">
-              <div class="flex-1">
-                <h3 class="text-xl font-bold mb-2 leading-tight">{item.title}</h3>
-                <p class="text-white/90 mb-5 text-sm">{item.description}</p>
+        {
+          spotlightItems.map((item) => (
+            <div class="bg-primary text-white p-6 rounded-2xl shadow-lg">
+              <div class="flex items-start justify-between mb-5">
+                <div class="flex-1">
+                  <h3 class="text-xl font-bold mb-2 leading-tight">
+                    {item.title}
+                  </h3>
+                  <p class="text-white/90 mb-5 text-sm">{item.description}</p>
+                </div>
+                <div class="w-16 h-16 bg-white/10 rounded-xl flex items-center justify-center shrink-0 ml-4">
+                  <div class="w-12 h-12 bg-white/20 rounded-lg" />
+                </div>
               </div>
-              <div class="w-16 h-16 bg-white/10 rounded-xl flex items-center justify-center shrink-0 ml-4">
-                <div class="w-12 h-12 bg-white/20 rounded-lg"></div>
-              </div>
+              <a href={item.buttonLink}>
+                <button class="w-full bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-sm">
+                  {item.buttonText}
+                </button>
+              </a>
             </div>
-            <a href={item.buttonLink}>
-              <button class="w-full bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-sm">
-                {item.buttonText}
-              </button>
-            </a>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </div>
   </div>
 </section>
-
