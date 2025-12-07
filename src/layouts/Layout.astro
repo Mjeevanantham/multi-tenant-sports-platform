@@ -1,0 +1,30 @@
+---
+import { generateThemeCSS } from '../lib/utils/theme';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = 'Parkwood Play', description = 'Find players and venues for sports' } = Astro.props;
+const tenant = Astro.locals.tenant;
+const themeCSS = generateThemeCSS(tenant);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <style set:html={themeCSS} />
+  </head>
+  <body class="bg-bg text-text font-sans antialiased">
+    <slot />
+  </body>
+</html>
+

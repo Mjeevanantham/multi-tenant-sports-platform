@@ -1,0 +1,36 @@
+# build output
+dist/
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# package manager files
+package-lock.json
+yarn.lock
+# pnpm-lock.yaml should be committed
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/
+
+# database
+database.sqlite
+database.sqlite-journal
+
+# drizzle migrations
+drizzle/

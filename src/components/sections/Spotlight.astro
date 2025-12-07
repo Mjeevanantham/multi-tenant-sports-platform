@@ -1,0 +1,67 @@
+---
+import Button from '../ui/Button';
+
+const spotlightItems = [
+  {
+    title: 'Play. Refer. Earn. Repeat.',
+    description: 'Invite friends and earn rewards for every successful referral.',
+    image: '/images/spotlight/referral.jpg',
+    buttonText: 'Refer Now',
+    buttonLink: '/refer',
+  },
+  {
+    title: 'Find Your Coach. Crush Your Goals.',
+    description: 'Connect with professional coaches to take your game to the next level.',
+    image: '/images/spotlight/coaching.jpg',
+    buttonText: 'Train Smarter',
+    buttonLink: '/train',
+  },
+  {
+    title: 'Got a Turf? Turn It Into a Hotspot!',
+    description: 'List your venue and reach thousands of sports enthusiasts.',
+    image: '/images/spotlight/venue.jpg',
+    buttonText: 'List Your Venue',
+    buttonLink: '/venues/list',
+  },
+  {
+    title: 'Got Ideas? We\'re All Ears!',
+    description: 'Share your feedback and help us improve the platform.',
+    image: '/images/spotlight/feedback.jpg',
+    buttonText: 'Tell Us What You Think',
+    buttonLink: '/feedback',
+  },
+];
+---
+
+<section class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="flex gap-8">
+      <div class="flex-shrink-0">
+        <div class="bg-accent text-text px-4 py-2 rounded-lg transform -rotate-90 origin-center whitespace-nowrap font-bold text-sm">
+          SPOTLIGHT
+        </div>
+      </div>
+      <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
+        {spotlightItems.map((item) => (
+          <div class="bg-primary text-white p-6 rounded-lg">
+            <div class="flex items-start justify-between mb-4">
+              <div class="flex-1">
+                <h3 class="text-xl font-bold mb-2">{item.title}</h3>
+                <p class="text-white/90 mb-4">{item.description}</p>
+              </div>
+              <div class="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                <img src={item.image} alt="" class="w-12 h-12 object-contain" />
+              </div>
+            </div>
+            <a href={item.buttonLink}>
+              <Button variant="secondary" className="w-full">
+                {item.buttonText}
+              </Button>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+

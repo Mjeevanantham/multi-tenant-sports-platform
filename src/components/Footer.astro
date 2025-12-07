@@ -1,0 +1,46 @@
+---
+const tenant = Astro.locals.tenant;
+---
+
+<footer class="bg-footer-bg text-white py-12 mt-20">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-2xl font-bold mb-4">{tenant.name}</h3>
+        <p class="text-gray-400 text-sm">{tenant.footerText}</p>
+      </div>
+      
+      <div>
+        <h4 class="font-semibold mb-4">Company</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          {tenant.companyLinks.about && <li><a href={tenant.companyLinks.about} class="hover:text-white transition-colors">About Us</a></li>}
+          {tenant.companyLinks.blogs && <li><a href={tenant.companyLinks.blogs} class="hover:text-white transition-colors">Blogs</a></li>}
+          {tenant.companyLinks.contact && <li><a href={tenant.companyLinks.contact} class="hover:text-white transition-colors">Contact</a></li>}
+          {tenant.companyLinks.careers && <li><a href={tenant.companyLinks.careers} class="hover:text-white transition-colors">Careers</a></li>}
+          {tenant.companyLinks.partner && <li><a href={tenant.companyLinks.partner} class="hover:text-white transition-colors">Partner With Us</a></li>}
+        </ul>
+      </div>
+      
+      <div>
+        <h4 class="font-semibold mb-4">Social</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          {tenant.socialLinks.instagram && <li><a href={tenant.socialLinks.instagram} class="hover:text-white transition-colors">Instagram</a></li>}
+          {tenant.socialLinks.facebook && <li><a href={tenant.socialLinks.facebook} class="hover:text-white transition-colors">Facebook</a></li>}
+          {tenant.socialLinks.linkedin && <li><a href={tenant.socialLinks.linkedin} class="hover:text-white transition-colors">LinkedIn</a></li>}
+          {tenant.socialLinks.twitter && <li><a href={tenant.socialLinks.twitter} class="hover:text-white transition-colors">Twitter</a></li>}
+        </ul>
+      </div>
+      
+      <div>
+        <h4 class="font-semibold mb-4">Privacy & Terms</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="/faq" class="hover:text-white transition-colors">FAQs</a></li>
+          <li><a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a></li>
+          <li><a href="/terms" class="hover:text-white transition-colors">Terms of Service</a></li>
+          <li><a href="/cancellation" class="hover:text-white transition-colors">Cancellation Policy</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+

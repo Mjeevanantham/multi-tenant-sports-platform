@@ -1,0 +1,44 @@
+{
+  "name": "parkwood-play",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:seed": "tsx scripts/init-db.ts",
+    "postinstall": "node scripts/build-sqlite.js",
+    "build:sqlite": "node scripts/build-sqlite.js"
+  },
+  "pnpm": {
+    "allowedBuildScripts": [
+      "better-sqlite3",
+      "*better-sqlite3*"
+    ],
+    "neverBuiltDependencies": []
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.12",
+    "@astrojs/node": "^9.5.1",
+    "@astrojs/react": "^4.4.2",
+    "@nanostores/react": "^1.0.0",
+    "@tailwindcss/vite": "^4.1.17",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^5.16.4",
+    "better-sqlite3": "^12.5.0",
+    "drizzle-kit": "^0.31.8",
+    "drizzle-orm": "^0.45.0",
+    "nanostores": "^1.1.0",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "tailwindcss": "^4.1.17"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0"
+  }
+}

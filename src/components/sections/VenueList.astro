@@ -1,0 +1,54 @@
+---
+import { db } from '../../lib/db/client';
+import { venues } from '../../lib/db/schema';
+import { eq } from 'drizzle-orm';
+import Card from '../ui/Card';
+
+const featuredVenues = db.select().from(venues).where(eq(venues.isFeatured, true)).limit(6).all();
+---
+
+<section class="py-16">
+  <div class="container mx-auto px-4">
+    <div class="flex justify-between items-center mb-8">
+      <h2 class="text-3xl font-bold text-text">Book Venues</h2>
+      <a href="/venues" class="text-primary hover:underline font-medium">
+        SEE ALL VENUES &gt;
+      </a>
+    </div>
+    <div class="flex gap-6 overflow-x-auto pb-4 scrollbar-hide">
+      {featuredVenues.map((venue) => (
+        <Card className="min-w-[300px] flex-shrink-0">
+          <div class="relative">
+            <img 
+              src={venue.image || '/images/placeholder.jpg'} 
+              alt={venue.name}
+              class="w-full h-48 object-cover"
+            />
+            {venue.isFeatured && (
+              <span class="absolute top-2 right-2 bg-primary text-white px-3 py-1 rounded-full text-xs font-medium">
+                FEATURED
+              </span>
+            )}
+          </div>
+          <div class="p-4">
+            <h3 class="font-semibold text-lg mb-2">{venue.name}</h3>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-yellow-500">★</span>
+              <span class="text-sm text-gray-600">
+                {venue.rating?.toFixed(2)} ({venue.reviewCount})
+              </span>
+            </div>
+            <p class="text-sm text-gray-600 mb-2">{venue.address}</p>
+            <a 
+              href={`/venues/${venue.id}`}
+              class="text-primary hover:underline text-sm font-medium"
+            >
+              View Details →
+            </a>
+          </div>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,68 @@
+---
+import Input from '../ui/Input';
+import Button from '../ui/Button';
+---
+
+<section class="py-16 bg-secondary">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div>
+        <h2 class="text-3xl font-bold text-text mb-6">Book your Slots</h2>
+        <form class="space-y-4" method="POST" action="/api/bookings">
+          <Input
+            type="text"
+            name="name"
+            label="Name"
+            placeholder="Enter your name"
+            required
+          />
+          <Input
+            type="email"
+            name="email"
+            label="Email ID"
+            placeholder="Enter your email"
+            required
+          />
+          <Input
+            type="tel"
+            name="phone"
+            label="Phone Number"
+            placeholder="Enter your phone number"
+            required
+          />
+          <Input
+            type="text"
+            name="address"
+            label="Address"
+            placeholder="Enter your address"
+          />
+          <Input
+            type="datetime-local"
+            name="dateTime"
+            label="Date & Timing"
+            required
+          />
+          <Button type="submit" className="w-full">
+            Book Slot
+          </Button>
+        </form>
+      </div>
+      <div>
+        <div class="bg-primary text-white p-8 rounded-lg">
+          <h3 class="text-2xl font-bold mb-6">Availability</h3>
+          <div class="space-y-4">
+            <div>
+              <p class="font-semibold mb-2">Mon - Fri</p>
+              <p class="text-white/90">5 AM to 11 PM</p>
+            </div>
+            <div>
+              <p class="font-semibold mb-2">Weekend</p>
+              <p class="text-white/90">6 AM to 12 PM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

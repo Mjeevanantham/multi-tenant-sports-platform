@@ -1,0 +1,36 @@
+---
+const sports = [
+  { name: 'Badminton', image: '/images/sports/badminton.jpg' },
+  { name: 'Football', image: '/images/sports/football.jpg' },
+  { name: 'Cricket', image: '/images/sports/cricket.jpg' },
+  { name: 'Swimming', image: '/images/sports/swimming.jpg' },
+  { name: 'Tennis', image: '/images/sports/tennis.jpg' },
+  { name: 'Table Tennis', image: '/images/sports/table-tennis.jpg' },
+];
+---
+
+<section class="py-16">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-text mb-8 text-center">Popular Sports</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      {sports.map((sport) => (
+        <a 
+          href={`/sports/${sport.name.toLowerCase().replace(' ', '-')}`}
+          class="relative group cursor-pointer"
+        >
+          <div class="aspect-square rounded-lg overflow-hidden bg-gray-200">
+            <img 
+              src={sport.image} 
+              alt={sport.name}
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+            />
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
+            <h3 class="text-white font-semibold text-center">{sport.name}</h3>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+

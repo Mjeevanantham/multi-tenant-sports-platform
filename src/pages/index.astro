@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/sections/Hero.astro';
+import VenueList from '../components/sections/VenueList.astro';
+import GameList from '../components/sections/GameList.astro';
+import SportsCategories from '../components/sections/SportsCategories.astro';
+import Spotlight from '../components/sections/Spotlight.astro';
+import BlogList from '../components/sections/BlogList.astro';
+import AboutTeam from '../components/sections/AboutTeam.astro';
+import FAQ from '../components/sections/FAQ.tsx';
+import BookSlots from '../components/sections/BookSlots.astro';
+---
+
+<Layout title="Parkwood Play - Find Players & Venues Nearby">
+  <Header />
+  <main>
+    <Hero />
+    <VenueList />
+    <GameList />
+    <SportsCategories />
+    <Spotlight />
+    <BlogList />
+    <AboutTeam />
+    <FAQ client:load />
+    <BookSlots />
+  </main>
+  <Footer />
+</Layout>
