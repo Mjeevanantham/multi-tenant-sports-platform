@@ -1,0 +1,10 @@
+{
+  "typescript.preferences.includePackageJsonAutoImports": "off",
+  "typescript.validate.enable": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "files.associations": {
+    "*.astro": "astro"
+  },
+  "astro.typescript.tsconfig": "./tsconfig.json"
+}
+

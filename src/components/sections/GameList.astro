@@ -1,6 +1,13 @@
 ---
 import { db } from "../../lib/db/client";
-import { games, users, venues, type Game, type User, type Venue } from "../../lib/db/schema";
+import {
+  games,
+  users,
+  venues,
+  type Game,
+  type User,
+  type Venue,
+} from "../../lib/db/schema";
 import { eq } from "drizzle-orm";
 import Card from "../ui/Card";
 
@@ -27,67 +34,81 @@ const allGames = db
     </div>
     <div class="relative">
       <div class="flex gap-5 overflow-x-auto pb-6 scrollbar-hide">
-         {
-           allGames.map(({ game, organizer, venue }: { game: Game | null, organizer: User | null, venue: Venue | null }) => {
-             if (!game || !organizer || !venue) return null;
-            const availableSlots = game.maxSlots - game.bookedSlots;
-            const date = new Date(game.date);
-            const formattedDate = date.toLocaleDateString("en-US", {
-              weekday: "short",
-              day: "numeric",
-              month: "short",
-              year: "numeric",
-            });
+        {
+          allGames.map(
+            ({
+              game,
+              organizer,
+              venue,
+            }: {
+              game: Game | null;
+              organizer: User | null;
+              venue: Venue | null;
+            }) => {
+              if (!game || !organizer || !venue) return null;
+              const availableSlots = game.maxSlots - game.bookedSlots;
+              const date = new Date(game.date);
+              const formattedDate = date.toLocaleDateString("en-US", {
+                weekday: "short",
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+              });
 
-            return (
-              <div class="min-w-[300px] md:min-w-[340px] shrink-0 bg-white rounded-2xl shadow-md p-5 hover:shadow-lg transition-shadow">
-                <div class="mb-3">
-                  <span class="text-sm font-semibold text-text">
-                    {game.type}
-                  </span>
-                </div>
-                <div class="flex items-center gap-3 mb-4">
-                  <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary/20 to-primary/40 flex items-center justify-center text-primary font-semibold text-sm">
-                    {organizer.name.charAt(0)}
+              return (
+                <div class="min-w-[300px] md:min-w-[340px] shrink-0 bg-white rounded-2xl shadow-md p-5 hover:shadow-lg transition-shadow">
+                  <div class="mb-3">
+                    <span class="text-sm font-semibold text-text">
+                      {game.type}
+                    </span>
+                  </div>
+                  <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary/20 to-primary/40 flex items-center justify-center text-primary font-semibold text-sm">
+                      {organizer.name.charAt(0)}
+                    </div>
+                    <div>
+                      <p class="text-sm font-semibold text-text">
+                        {organizer.name}
+                      </p>
+                      <p class="text-xs text-gray-500">
+                        {organizer.karma} Karma
+                      </p>
+                    </div>
+                  </div>
+                  <div class="mb-4">
+                    <span
+                      class={`inline-block px-3 py-1.5 rounded-full text-xs font-semibold ${
+                        availableSlots === 1
+                          ? "bg-yellow-100 text-yellow-800"
+                          : availableSlots === 2
+                            ? "bg-yellow-100 text-yellow-800"
+                            : "bg-green-100 text-green-800"
+                      }`}
+                    >
+                      {availableSlots === 1
+                        ? "Only 1 Slots"
+                        : availableSlots === 2
+                          ? "Only 2 Slots"
+                          : `${availableSlots} Going`}
+                    </span>
+                  </div>
+                  <div class="mb-3">
+                    <p class="text-sm text-gray-700">
+                      {formattedDate}, {game.startTime} - {game.endTime}
+                    </p>
+                  </div>
+                  <div class="mb-3">
+                    <p class="text-sm text-gray-600 line-clamp-1">
+                      {venue.name}
+                    </p>
                   </div>
                   <div>
-                    <p class="text-sm font-semibold text-text">
-                      {organizer.name}
-                    </p>
-                    <p class="text-xs text-gray-500">{organizer.karma} Karma</p>
+                    <span class="text-xs text-gray-500">{game.skillLevel}</span>
                   </div>
                 </div>
-                <div class="mb-4">
-                  <span
-                    class={`inline-block px-3 py-1.5 rounded-full text-xs font-semibold ${
-                      availableSlots === 1
-                        ? "bg-yellow-100 text-yellow-800"
-                        : availableSlots === 2
-                          ? "bg-yellow-100 text-yellow-800"
-                          : "bg-green-100 text-green-800"
-                    }`}
-                  >
-                    {availableSlots === 1
-                      ? "Only 1 Slots"
-                      : availableSlots === 2
-                        ? "Only 2 Slots"
-                        : `${availableSlots} Going`}
-                  </span>
-                </div>
-                <div class="mb-3">
-                  <p class="text-sm text-gray-700">
-                    {formattedDate}, {game.startTime} - {game.endTime}
-                  </p>
-                </div>
-                <div class="mb-3">
-                  <p class="text-sm text-gray-600 line-clamp-1">{venue.name}</p>
-                </div>
-                <div>
-                  <span class="text-xs text-gray-500">{game.skillLevel}</span>
-                </div>
-              </div>
-            );
-          })
+              );
+            }
+          )
         }
       </div>
       <div class="flex justify-center gap-2 mt-4">
