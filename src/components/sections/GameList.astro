@@ -16,61 +16,79 @@ const allGames = db.select({
 .all();
 ---
 
-<section class="py-16 bg-gray-50">
-  <div class="container mx-auto px-4">
+<section class="py-12 bg-white">
+  <div class="container mx-auto px-6">
     <div class="flex justify-between items-center mb-8">
       <h2 class="text-3xl font-bold text-text">Discover Games</h2>
-      <a href="/games" class="text-primary hover:underline font-medium">
+      <a href="/games" class="text-primary hover:underline font-medium text-sm">
         SEE ALL GAMES &gt;
       </a>
     </div>
-    <div class="flex gap-6 overflow-x-auto pb-4 scrollbar-hide">
-      {allGames.map(({ game, organizer, venue }) => {
-        if (!game || !organizer || !venue) return null;
-        const availableSlots = game.maxSlots - game.bookedSlots;
-        const date = new Date(game.date);
-        const formattedDate = date.toLocaleDateString('en-US', { 
-          weekday: 'short', 
-          day: 'numeric', 
-          month: 'short', 
-          year: 'numeric' 
-        });
-        
-        return (
-          <Card className="min-w-[320px] flex-shrink-0 p-4">
-            <div class="mb-3">
-              <span class="text-sm font-medium text-text">{game.type}</span>
-            </div>
-            <div class="flex items-center gap-2 mb-3">
-              <div class="w-8 h-8 rounded-full bg-gray-300"></div>
+    <div class="relative">
+      <div class="flex gap-5 overflow-x-auto pb-6 scrollbar-hide">
+        {allGames.map(({ game, organizer, venue }) => {
+          if (!game || !organizer || !venue) return null;
+          const availableSlots = game.maxSlots - game.bookedSlots;
+          const date = new Date(game.date);
+          const formattedDate = date.toLocaleDateString('en-US', { 
+            weekday: 'short', 
+            day: 'numeric', 
+            month: 'short', 
+            year: 'numeric' 
+          });
+          
+          return (
+            <div class="min-w-[300px] md:min-w-[340px] flex-shrink-0 bg-white rounded-2xl shadow-md p-5 hover:shadow-lg transition-shadow">
+              <div class="mb-3">
+                <span class="text-sm font-semibold text-text">{game.type}</span>
+              </div>
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary/20 to-primary/40 flex items-center justify-center text-primary font-semibold text-sm">
+                  {organizer.name.charAt(0)}
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-text">{organizer.name}</p>
+                  <p class="text-xs text-gray-500">{organizer.karma} Karma</p>
+                </div>
+              </div>
+              <div class="mb-4">
+                <span class={`inline-block px-3 py-1.5 rounded-full text-xs font-semibold ${
+                  availableSlots === 1 
+                    ? 'bg-yellow-100 text-yellow-800' 
+                    : availableSlots === 2
+                    ? 'bg-yellow-100 text-yellow-800'
+                    : 'bg-green-100 text-green-800'
+                }`}>
+                  {availableSlots === 1 ? 'Only 1 Slots' : availableSlots === 2 ? 'Only 2 Slots' : `${game.bookedSlots}/${game.maxSlots} Going`}
+                </span>
+              </div>
+              <div class="mb-3">
+                <p class="text-sm text-gray-700">
+                  {formattedDate}, {game.startTime} - {game.endTime}
+                </p>
+              </div>
+              <div class="mb-3">
+                <p class="text-sm text-gray-600 line-clamp-1">{venue.name}</p>
+              </div>
               <div>
-                <p class="text-sm font-medium">{organizer.name}</p>
-                <p class="text-xs text-gray-500">{organizer.karma} Karma</p>
+                <span class="text-xs text-gray-500">{game.skillLevel}</span>
               </div>
             </div>
-            <div class="mb-3">
-              <span class={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
-                availableSlots <= 2 
-                  ? 'bg-red-100 text-red-800' 
-                  : 'bg-green-100 text-green-800'
-              }`}>
-                {availableSlots === 1 ? 'Only 1 Slot' : availableSlots === 2 ? 'Only 2 Slots' : `${availableSlots} Going`}
-              </span>
-            </div>
-            <div class="mb-3">
-              <p class="text-sm text-gray-600">
-                {formattedDate}, {game.startTime} - {game.endTime}
-              </p>
-            </div>
-            <div class="mb-3">
-              <p class="text-sm text-gray-600">{venue.name}</p>
-            </div>
-            <div>
-              <span class="text-xs text-gray-500">{game.skillLevel}</span>
-            </div>
-          </Card>
-        );
-      })}
+          );
+        })}
+      </div>
+      <div class="flex justify-center gap-2 mt-4">
+        <button class="w-10 h-10 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors">
+          <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button class="w-10 h-10 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors">
+          <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 </section>

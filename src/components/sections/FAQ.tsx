@@ -24,24 +24,24 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-16">
-      <div className="container mx-auto px-4">
+    <section className="py-12 bg-white">
+      <div className="container mx-auto px-6">
         <h2 className="text-3xl font-bold text-text mb-8 text-center">
           Frequently Asked Questions
         </h2>
-        <div className="max-w-3xl mx-auto space-y-4">
+        <div className="max-w-3xl mx-auto space-y-3">
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="border border-gray-200 rounded-lg overflow-hidden"
+              className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                 className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors"
               >
-                <span className="font-medium text-text">{faq.question}</span>
+                <span className="font-semibold text-text text-sm md:text-base pr-4">{faq.question}</span>
                 <svg
-                  className={`w-5 h-5 text-gray-500 transition-transform ${
+                  className={`w-5 h-5 text-gray-500 transition-transform flex-shrink-0 ${
                     openIndex === index ? 'rotate-180' : ''
                   }`}
                   fill="none"
@@ -57,7 +57,7 @@ export default function FAQ() {
                 </svg>
               </button>
               {openIndex === index && (
-                <div className="px-6 py-4 bg-gray-50 text-gray-700">
+                <div className="px-6 pb-4 text-gray-700 text-sm md:text-base leading-relaxed">
                   {faq.answer}
                 </div>
               )}

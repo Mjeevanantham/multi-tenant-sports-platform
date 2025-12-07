@@ -7,47 +7,66 @@ import Card from '../ui/Card';
 const featuredVenues = db.select().from(venues).where(eq(venues.isFeatured, true)).limit(6).all();
 ---
 
-<section class="py-16">
-  <div class="container mx-auto px-4">
+<section class="py-12 bg-white">
+  <div class="container mx-auto px-6">
     <div class="flex justify-between items-center mb-8">
       <h2 class="text-3xl font-bold text-text">Book Venues</h2>
-      <a href="/venues" class="text-primary hover:underline font-medium">
+      <a href="/venues" class="text-primary hover:underline font-medium text-sm">
         SEE ALL VENUES &gt;
       </a>
     </div>
-    <div class="flex gap-6 overflow-x-auto pb-4 scrollbar-hide">
-      {featuredVenues.map((venue) => (
-        <Card className="min-w-[300px] flex-shrink-0">
-          <div class="relative">
-            <img 
-              src={venue.image || '/images/placeholder.jpg'} 
-              alt={venue.name}
-              class="w-full h-48 object-cover"
-            />
-            {venue.isFeatured && (
-              <span class="absolute top-2 right-2 bg-primary text-white px-3 py-1 rounded-full text-xs font-medium">
-                FEATURED
-              </span>
-            )}
-          </div>
-          <div class="p-4">
-            <h3 class="font-semibold text-lg mb-2">{venue.name}</h3>
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-yellow-500">★</span>
-              <span class="text-sm text-gray-600">
-                {venue.rating?.toFixed(2)} ({venue.reviewCount})
-              </span>
+    <div class="relative">
+      <div class="flex gap-5 overflow-x-auto pb-6 scrollbar-hide">
+        {featuredVenues.map((venue) => (
+          <div class="min-w-[280px] md:min-w-[320px] flex-shrink-0 bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="relative">
+              <img 
+                src={venue.image || '/images/placeholder.jpg'} 
+                alt={venue.name}
+                class="w-full h-48 object-cover"
+              />
+              {venue.isFeatured && (
+                <span class="absolute top-3 right-3 bg-gray-800 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                  FEATURED
+                </span>
+              )}
             </div>
-            <p class="text-sm text-gray-600 mb-2">{venue.address}</p>
-            <a 
-              href={`/venues/${venue.id}`}
-              class="text-primary hover:underline text-sm font-medium"
-            >
-              View Details →
-            </a>
+            <div class="p-5">
+              <h3 class="font-semibold text-base mb-2 text-text line-clamp-1">{venue.name}</h3>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="text-primary font-semibold">
+                  {venue.rating?.toFixed(2)}
+                </span>
+                <span class="text-gray-500 text-sm">
+                  ({venue.reviewCount})
+                </span>
+              </div>
+              <p class="text-sm text-gray-600 mb-3 line-clamp-1">{venue.address}</p>
+              <a 
+                href={`/venues/${venue.id}`}
+                class="text-primary hover:underline text-sm font-medium inline-flex items-center gap-1"
+              >
+                View Details
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
           </div>
-        </Card>
-      ))}
+        ))}
+      </div>
+      <div class="flex justify-center gap-2 mt-4">
+        <button class="w-10 h-10 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors">
+          <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button class="w-10 h-10 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors">
+          <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 </section>

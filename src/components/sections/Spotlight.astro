@@ -33,30 +33,30 @@ const spotlightItems = [
 ];
 ---
 
-<section class="py-16 bg-gray-50">
-  <div class="container mx-auto px-4">
-    <div class="flex gap-8">
-      <div class="flex-shrink-0">
-        <div class="bg-accent text-text px-4 py-2 rounded-lg transform -rotate-90 origin-center whitespace-nowrap font-bold text-sm">
+<section class="py-12 bg-primary">
+  <div class="container mx-auto px-6">
+    <div class="flex gap-6 md:gap-8">
+      <div class="flex-shrink-0 hidden md:block">
+        <div class="bg-accent text-text px-4 py-3 rounded-lg transform -rotate-90 origin-center whitespace-nowrap font-bold text-sm h-fit">
           SPOTLIGHT
         </div>
       </div>
-      <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-5">
         {spotlightItems.map((item) => (
-          <div class="bg-primary text-white p-6 rounded-lg">
-            <div class="flex items-start justify-between mb-4">
+          <div class="bg-primary text-white p-6 rounded-2xl shadow-lg">
+            <div class="flex items-start justify-between mb-5">
               <div class="flex-1">
-                <h3 class="text-xl font-bold mb-2">{item.title}</h3>
-                <p class="text-white/90 mb-4">{item.description}</p>
+                <h3 class="text-xl font-bold mb-2 leading-tight">{item.title}</h3>
+                <p class="text-white/90 mb-5 text-sm">{item.description}</p>
               </div>
-              <div class="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                <img src={item.image} alt="" class="w-12 h-12 object-contain" />
+              <div class="w-16 h-16 bg-white/10 rounded-xl flex items-center justify-center flex-shrink-0 ml-4">
+                <div class="w-12 h-12 bg-white/20 rounded-lg"></div>
               </div>
             </div>
             <a href={item.buttonLink}>
-              <Button variant="secondary" className="w-full">
+              <button class="w-full bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-sm">
                 {item.buttonText}
-              </Button>
+              </button>
             </a>
           </div>
         ))}

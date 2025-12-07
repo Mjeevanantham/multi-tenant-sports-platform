@@ -28,14 +28,14 @@ export interface TenantConfig {
 export const tenants: Record<string, TenantConfig> = {
   parkwood: {
     id: 'parkwood',
-    name: 'Parkwood Play',
+    name: 'Parkwood play',
     logo: '/logo.svg',
-    primaryColor: '#38B000',
-    secondaryColor: '#E0F7FA',
-    accentColor: '#FFD700',
+    primaryColor: '#4CAF50',
+    secondaryColor: '#E8F5E9',
+    accentColor: '#FFC107',
     textColor: '#1F2937',
     backgroundColor: '#FFFFFF',
-    footerBackground: '#1F2937',
+    footerBackground: '#374151',
     fontFamily: 'system-ui, -apple-system, sans-serif',
     socialLinks: {
       instagram: '#',
