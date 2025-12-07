@@ -5,6 +5,10 @@
   "files.associations": {
     "*.astro": "astro"
   },
-  "astro.typescript.tsconfig": "./tsconfig.json"
+  "astro.typescript.tsconfig": "./tsconfig.json",
+  "tailwindCSS.experimental.classRegex": [
+    ["class:\\s*?[\"'`]([^\"'`]*).*?[\"'`]", "([^\\s]*)"]
+  ],
+  "css.lint.unknownAtRules": "ignore"
 }
 
