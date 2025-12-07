@@ -59,7 +59,7 @@ const allGames = db.select({
                     ? 'bg-yellow-100 text-yellow-800'
                     : 'bg-green-100 text-green-800'
                 }`}>
-                  {availableSlots === 1 ? 'Only 1 Slots' : availableSlots === 2 ? 'Only 2 Slots' : `${game.bookedSlots}/${game.maxSlots} Going`}
+                  {availableSlots === 1 ? 'Only 1 Slots' : availableSlots === 2 ? 'Only 2 Slots' : `${availableSlots} Going`}
                 </span>
               </div>
               <div class="mb-3">
