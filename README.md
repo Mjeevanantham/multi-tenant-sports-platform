@@ -1,4 +1,4 @@
-# Parkwood Play - Dynamic White-Label Sports Platform
+# Multi-Tenant Sports Platform
 
 A modern, multi-tenant sports platform built with Astro, React, TypeScript, and Drizzle ORM. This platform allows users to find players, book venues, and discover sports activities in their area.
 
